@@ -1,0 +1,112 @@
+<html>
+<head>
+
+<title>Youtube</title>
+<STYle>
+.button1{
+background-color: rgb(60, 128, 224);
+border: none;
+padding: 10px 20px;
+color: aliceblue;
+font-weight: bolder;
+transition: all .5s;
+display: inline-block;
+
+}
+.button1:hover{
+background-color: rgba(31, 181, 106, 0.718);
+cursor: pointer;
+}
+.button1:active,#Create:active{
+    background-color: rgb(225, 8, 8);
+}
+.hide{
+display: none;
+}
+
+iframe{
+margin-bottom: 15px;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+textarea{
+    width: 100%;
+}
+#Create{
+margin: 0;
+border: none;
+transition: all .5s;
+position: fixed;
+font-size: 10px;
+}
+
+#Create:hover{
+background-color: rgb(242, 245, 246);
+cursor: pointer;
+padding: 20px;
+font-size: 25px;
+font-weight: bolder;
+border-radius: 50%;
+}
+</STYle>
+</head>
+<body bgcolor="#C840C3">
+<button id="Create" onclick="Create()">✍</button>
+<!-- ============================================================= -->
+<div >
+<textarea class="Server" rows="10" ></textarea>
+<div class="button">
+<button class="button1" onclick="Save()">Save</button>
+<!-- <button class="button1" onclick="Clear()">Clear</button> -->
+<button class="button1" onclick="Display()">Display</button>
+</div>
+</div>
+<p class="content"></p>
+
+
+<script>
+
+function Save(){
+var url=document.querySelector(".Server").value
+var url=localStorage.setItem("url",url)
+}
+
+function Clear(){
+localStorage.clear()
+ }
+
+function Display(){
+var url=localStorage.getItem("url")
+document.querySelector(".content").innerHTML=url
+}
+Display()
+
+
+
+// =====================================================================
+
+function Create(){
+let input1=document.createElement("input")
+
+let Server=document.querySelector(".Server")
+let button=document.querySelector(".button")
+let hide=Server.classList.toggle("hide")
+button.classList.toggle("hide")
+var url=localStorage.getItem("url")
+if (url){
+Server.defaultValue = url;
+}else{
+Server.defaultValue = "Please Enter Youtube Embed Link";
+
+}
+
+if (hide){
+document.querySelector("#Create").innerText="✍"
+}else{
+document.querySelector("#Create").innerText="X"
+
+}
+}
+Create()
+</script>
+</body>
+</html>
